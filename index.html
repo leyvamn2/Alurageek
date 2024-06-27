@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="./assets/icon.webp" />
+    <title>Alura Geek Challenge</title>
+  </head>
+  <body>
+    <header class="header">
+      <img class="header__logo" src="./assets/header.png" alt="aluraGeek" />
+      <div class="header__shadow"></div>
+    </header>
+
+    <main>
+      <section class="add-product__section">
+        <h1 class="add-product__title">Agregar<br />Producto:</h1>
+
+        <form class="form__container" data-form>
+          <fieldset class="form__field">
+            <input
+              name="nombre"
+              class="form__input"
+              type="text"
+              placeholder="Nombre"
+              minlength="3"
+              required
+              data-name
+            />
+            <span class="mensaje-error"></span>
+          </fieldset>
+          <fieldset class="form__field">
+            <input
+              name="precio"
+              class="form__input"
+              type="number"
+              placeholder="Precio"
+              min="1"
+              required
+              data-price
+            />
+            <span class="mensaje-error"></span>
+          </fieldset>
+          <fieldset class="form__field">
+            <input
+              name="url_imagen"
+              class="form__input"
+              type="url"
+              placeholder="URL de la imagen"
+              pattern="https?://.*\.(png|jpg|webp|jpeg)"
+              required
+              data-url
+            />
+            <span class="mensaje-error"></span>
+          </fieldset>
+
+          <div class="button__container">
+            <button class="button button__send" type="submit" disabled>Enviar</button>
+            <button class="button button__clear" type="button">limpiar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="list-products__section">
+        <h2 class="list-products__title">Mis Productos</h2>
+
+        <div class="products__container" data-list></div>
+      </section>
+    </main>
+
+    <footer>
+      <img class="header__logo" src="./assets/header.png" alt="aluraGeek" />
+    </footer>
+
+    <script src="./js/displayError.js" type="module"></script>
+    <script src="/js/showItems.js" type="module"></script>
+    <script src="/js/addItem.js" type="module"></script>
+    <script src="/js/deleteItem.js" type="module"></script>
+    <script src="/js/cleanInputs.js" type="module"></script>
+  </body>
+</html>
