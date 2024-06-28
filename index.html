@@ -50,14 +50,14 @@
               placeholder="URL de la imagen"
               pattern="https?://.*\.(png|jpg|webp|jpeg)"
               required
-              data-url
+              data-image
             />
             <span class="mensaje-error"></span>
           </fieldset>
 
           <div class="button__container">
-            <button class="button button__send" type="submit" disabled>Enviar</button>
-            <button class="button button__clear" type="button">limpiar</button>
+            <button class="button button__send" type="submit">Enviar</button>
+            <button class="button button__clear" type="button">Limpiar</button>
           </div>
         </form>
       </section>
@@ -65,12 +65,13 @@
       <section class="list-products__section">
         <h2 class="list-products__title">Mis Productos</h2>
 
-        <div class="products__container" data-list></div>
+        <div class="products__container" data-product></div>
       </section>
     </main>
 
     <footer>
       <img class="header__logo" src="./assets/header.png" alt="aluraGeek" />
+      <p>Desarrollado por: Nicole Leyva</p>
     </footer>
     <script type="module" src="./main.js"></script>
   </body>

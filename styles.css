@@ -135,7 +135,10 @@
     background-color: var(--col-whihe);
     color: var(--col-dark-blue);
   }
-  
+  .imagen-container img {
+    width: 20%; /* La imagen ocupará el 100% del ancho del contenedor */
+    height: auto; /* Mantendrá la proporción de la imagen */
+}
   /* productos */
   .list-products__section {
     width: 100%;
