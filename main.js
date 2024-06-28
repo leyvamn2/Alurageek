@@ -1,9 +1,8 @@
-// main.js
-
-import checkAllFields from "./displayError.js";
+import checkAllFields from "./js/displayError.js";
+import cleanInputs from "./js/cleanInputs.js";
 import { servicesProductos } from "./js/products-services.js";
 
-const listaCard = document.querySelector("[data-product]");
+const listaCard = document.querySelector("[data-list]");
 const form = document.querySelector("[data-form]");
 
 function createCard(id, name, price, image_url) {
@@ -38,8 +37,8 @@ function createCard(id, name, price, image_url) {
 
 const render = async () => {
   try {
-    const itemList = await servicesProductos.productosList(); // Cambia a itemList para reflejar la estructura del JSON
-    itemList.forEach(item => { // Cambia item para reflejar la estructura del JSON
+    const itemList = await servicesProductos.productosList();
+    itemList.forEach(item => {
       listaCard.appendChild(createCard(
         item.id,
         item.name,
@@ -54,14 +53,19 @@ const render = async () => {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  
+  // Verificar campos antes de enviar el formulario
+  if (!checkAllFields()) {
+    return; // Detener el envío si hay campos inválidos
+  }
+
   const name = document.querySelector("[data-name]").value;
   const price = document.querySelector("[data-price]").value;
-  const image_url = document.querySelector("[data-url]").value; // Ajusta a data-url en lugar de data-image
+  const image_url = document.querySelector("[data-url]").value;
 
   servicesProductos.createProductos(name, price, image_url)
     .then((res) => {
       console.log(res);
-      // Podrías agregar la nueva tarjeta aquí también si lo deseas
       render(); // Renderizar de nuevo para incluir el nuevo producto
       cleanInputs(); // Limpia los inputs después de agregar un producto exitosamente
     })

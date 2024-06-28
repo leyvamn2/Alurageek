@@ -1,49 +1,24 @@
-import { typeError, messages } from "./errorMsg.js";
-
-const formfields = [...document.querySelectorAll("[required]")];
-const submitBtn = document.querySelector(".button__send");
-
-formfields.forEach((field) => {
-  field.addEventListener("blur", () => verifyFiled(field))
-  field.addEventListener("invalid", (e) => e.preventDefault());
-});
-
-function verifyFiled(field) {
-  let message = "";
-  field.setCustomValidity("");
-
-  typeError.forEach((error) => {
-    if (field.validity[error]) {
-      message = messages[field.name][error];
-    }
-  });
-
-  const errorMessage = field.parentNode.querySelector(".mensaje-error");
-  const inputValid = field.checkValidity();
-
-  if (!inputValid) {
-    errorMessage.textContent = message;
-    submitBtn.setAttribute('disabled', '')
-  } else {
-    errorMessage.textContent = "";
-    submitBtn.removeAttribute('disabled')
-  }
-
-  checkAllFields()
-}
-
-export default function checkAllFields() {
-  let allValid = true;
-
-  formfields.forEach((field) => {
-    if (!field.checkValidity()) {
-      allValid = false;
-    }
-  });
-
-  if (allValid) {
-    submitBtn.removeAttribute('disabled');
-  } else {
-    submitBtn.setAttribute('disabled', '');
-  }
-}
+export const typeError = [
+    "valueMissing",
+    "typeMismatch",
+    "patternMismatch",
+    "tooShort",
+    "stepMismatch",
+    'rangeUnderflow'
+  ];
+  
+  export const messages = {
+    nombre: {
+      valueMissing: "El campo nombre no puede esta vacio",
+      tooShort: "El nombre tiene que ser al menos de 3 caracteres",
+    },
+    precio: {
+      valueMissing: "El campo precio no puede esta vacio",
+      stepMismatch: "no se aceptan numeros decimales",
+      rangeUnderflow: "El precio no puede ser 0"
+    },
+    url_imagen: {
+      valueMissing: "El campo URL no puede esta vacio",
+      patternMismatch: "Por favor, ingresa una URL valida y que termine en un formato de imagen valido (jpg, png, webp o jpeg)",
+    },
+  };
